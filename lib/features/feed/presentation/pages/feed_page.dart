@@ -6,7 +6,7 @@ import 'package:look4me_app/core/widgets/story_bubble.dart';
 import 'package:look4me_app/features/feed/presentation/widgets/category_chip.dart';
 
 class FeedPage extends StatefulWidget {
-  const FeedPage({Key? key}) : super(key: key);
+  const FeedPage({super.key});
 
   @override
   State<FeedPage> createState() => _FeedPageState();

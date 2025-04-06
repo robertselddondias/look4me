@@ -8,10 +8,10 @@ class StoryViewPage extends StatefulWidget {
   final bool canVote;
 
   const StoryViewPage({
-    Key? key,
+    super.key,
     required this.storyData,
     this.canVote = true,
-  }) : super(key: key);
+  });
 
   @override
   State<StoryViewPage> createState() => _StoryViewPageState();

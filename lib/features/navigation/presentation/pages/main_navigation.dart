@@ -7,7 +7,7 @@ import 'package:look4me_app/features/search/presentation/pages/search_page.dart'
 import 'package:look4me_app/features/stories/presentation/pages/stories_page.dart';
 
 class MainNavigation extends StatefulWidget {
-  const MainNavigation({Key? key}) : super(key: key);
+  const MainNavigation({super.key});
 
   @override
   State<MainNavigation> createState() => _MainNavigationState();

@@ -12,10 +12,10 @@ class OtpVerificationPage extends StatefulWidget {
   final String verificationPurpose; // 'registration' ou 'password_reset'
 
   const OtpVerificationPage({
-    Key? key,
+    super.key,
     required this.email,
     required this.verificationPurpose,
-  }) : super(key: key);
+  });
 
   @override
   State<OtpVerificationPage> createState() => _OtpVerificationPageState();

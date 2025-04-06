@@ -5,7 +5,7 @@ import '../../../../core/theme/text_styles.dart';
 import '../../../../core/widgets/app_button.dart';
 
 class EditProfilePage extends StatefulWidget {
-  const EditProfilePage({Key? key}) : super(key: key);
+  const EditProfilePage({super.key});
 
   @override
   State<EditProfilePage> createState() => _EditProfilePageState();

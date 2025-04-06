@@ -124,8 +124,14 @@ class _SearchPageState extends State<SearchPage> {
                     backgroundImage: NetworkImage(profile['avatar']!),
                   ),
                   title: Row(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(profile['username']!),
+                      Flexible(
+                        child: Text(
+                          profile['username']!,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
                       if (profile['badge']!.isNotEmpty) ...[
                         const SizedBox(width: 8),
                         Container(
@@ -140,12 +146,16 @@ class _SearchPageState extends State<SearchPage> {
                               color: AppColors.primary,
                               fontWeight: FontWeight.w500,
                             ),
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                       ],
                     ],
                   ),
-                  subtitle: Text(profile['name']!),
+                  subtitle: Text(
+                    profile['name']!,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                   trailing: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     decoration: BoxDecoration(
@@ -182,11 +192,14 @@ class _SearchPageState extends State<SearchPage> {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
-            '#$tag',
-            style: TextStyles.bodySmall.copyWith(
-              color: AppColors.primary,
-              fontWeight: FontWeight.w600,
+          Flexible(
+            child: Text(
+              '#$tag',
+              style: TextStyles.bodySmall.copyWith(
+                color: AppColors.primary,
+                fontWeight: FontWeight.w600,
+              ),
+              overflow: TextOverflow.ellipsis,
             ),
           ),
           const SizedBox(width: 4),

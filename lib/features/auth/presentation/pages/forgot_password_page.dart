@@ -11,9 +11,9 @@ class ForgotPasswordPage extends StatefulWidget {
   final String token;
 
   const ForgotPasswordPage({
-    Key? key,
+    super.key,
     required this.token,
-  }) : super(key: key);
+  });
 
   @override
   State<ForgotPasswordPage> createState() => _ResetPasswordPageState();

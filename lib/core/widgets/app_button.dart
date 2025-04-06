@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../theme/app_colors.dart';
-import '../theme/text_styles.dart';
 
 class AppButton extends StatelessWidget {
   final String text;
@@ -12,7 +11,7 @@ class AppButton extends StatelessWidget {
   final bool isGradient;
 
   const AppButton({
-    Key? key,
+    super.key,
     required this.text,
     required this.onPressed,
     this.isOutlined = false,
@@ -20,7 +19,7 @@ class AppButton extends StatelessWidget {
     this.icon,
     this.isLoading = false,
     this.isGradient = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

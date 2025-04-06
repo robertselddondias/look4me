@@ -11,14 +11,14 @@ class StoryBubble extends StatelessWidget {
   final int remainingMinutes;
 
   const StoryBubble({
-    Key? key,
+    super.key,
     required this.username,
     required this.avatarUrl,
     this.isViewed = false,
     this.isActive = false,
     required this.onTap,
     this.remainingMinutes = 0,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

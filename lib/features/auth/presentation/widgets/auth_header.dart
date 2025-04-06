@@ -8,11 +8,11 @@ class AuthHeader extends StatelessWidget {
   final bool showLogo;
 
   const AuthHeader({
-    Key? key,
+    super.key,
     required this.title,
     required this.subtitle,
     this.showLogo = true,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

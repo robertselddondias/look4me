@@ -5,7 +5,6 @@ import 'package:look4me_app/core/theme/text_styles.dart';
 import 'package:look4me_app/core/widgets/app_button.dart';
 import 'package:look4me_app/features/auth/presentation/widgets/password_field.dart';
 import 'package:look4me_app/features/navigation/presentation/pages/main_navigation.dart';
-import 'forgot_password_page.dart';
 
 class WelcomeBackPage extends StatefulWidget {
   final String name;
@@ -13,11 +12,11 @@ class WelcomeBackPage extends StatefulWidget {
   final String avatarUrl;
 
   const WelcomeBackPage({
-    Key? key,
+    super.key,
     required this.name,
     required this.email,
     required this.avatarUrl,
-  }) : super(key: key);
+  });
 
   @override
   State<WelcomeBackPage> createState() => _WelcomeBackPageState();

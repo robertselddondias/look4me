@@ -9,7 +9,7 @@ import 'package:look4me_app/features/navigation/presentation/pages/main_navigati
 import 'login_page.dart';
 
 class SignupPage extends StatefulWidget {
-  const SignupPage({Key? key}) : super(key: key);
+  const SignupPage({super.key});
 
   @override
   State<SignupPage> createState() => _SignupPageState();

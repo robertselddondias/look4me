@@ -16,7 +16,6 @@ class AppTheme {
         secondaryContainer: AppColors.secondaryLight,
         onSecondaryContainer: AppColors.secondaryDark,
         surface: AppColors.surface,
-        background: AppColors.background,
         error: AppColors.error,
       ),
       scaffoldBackgroundColor: AppColors.background,

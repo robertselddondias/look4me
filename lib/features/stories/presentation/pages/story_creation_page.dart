@@ -5,7 +5,7 @@ import '../../../../core/theme/text_styles.dart';
 import '../../../../core/widgets/app_button.dart';
 
 class StoryCreationPage extends StatefulWidget {
-  const StoryCreationPage({Key? key}) : super(key: key);
+  const StoryCreationPage({super.key});
 
   @override
   State<StoryCreationPage> createState() => _StoryCreationPageState();

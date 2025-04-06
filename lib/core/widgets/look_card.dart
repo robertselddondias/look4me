@@ -15,7 +15,7 @@ class LookCard extends StatefulWidget {
   final String? badgeType;
 
   const LookCard({
-    Key? key,
+    super.key,
     required this.username,
     required this.userAvatar,
     required this.imageUrls,
@@ -26,7 +26,7 @@ class LookCard extends StatefulWidget {
     this.brandName,
     this.showBadge = false,
     this.badgeType,
-  }) : super(key: key);
+  });
 
   @override
   State<LookCard> createState() => _LookCardState();

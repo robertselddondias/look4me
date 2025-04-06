@@ -6,7 +6,7 @@ import '../../../../core/theme/text_styles.dart';
 import '../../../../core/widgets/app_button.dart';
 
 class NewPostPage extends StatefulWidget {
-  const NewPostPage({Key? key}) : super(key: key);
+  const NewPostPage({super.key});
 
   @override
   State<NewPostPage> createState() => _NewPostPageState();
@@ -25,7 +25,7 @@ class _NewPostPageState extends State<NewPostPage> {
   ];
 
   String? _selectedTag;
-  bool _isUploading = false;
+  final bool _isUploading = false;
   bool _isPostingComplete = false;
 
   @override

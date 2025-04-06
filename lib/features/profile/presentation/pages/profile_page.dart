@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:look4me_app/features/profile/presentation/pages/edit_profile_page.dart';
+import 'package:look4me_app/features/settings/presentation/pages/settings_page.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/text_styles.dart';
 import '../../../../core/widgets/app_button.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+  const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,10 @@ class ProfilePage extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.settings_outlined),
             onPressed: () {
-              // Navegar para configurações
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const SettingsPage()),
+              );
             },
           ),
         ],

@@ -1,6 +1,5 @@
 // lib/features/stories/presentation/pages/stories_page.dart
 import 'package:flutter/material.dart';
-import 'dart:async';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/text_styles.dart';
 import '../../../../core/widgets/app_button.dart';
@@ -8,7 +7,7 @@ import 'story_creation_page.dart';
 import 'story_view_page.dart';
 
 class StoriesPage extends StatefulWidget {
-  const StoriesPage({Key? key}) : super(key: key);
+  const StoriesPage({super.key});
 
   @override
   State<StoriesPage> createState() => _StoriesPageState();

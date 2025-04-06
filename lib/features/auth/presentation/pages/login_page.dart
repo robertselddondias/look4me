@@ -6,11 +6,10 @@ import 'package:look4me_app/features/auth/presentation/widgets/auth_header.dart'
 import 'package:look4me_app/features/auth/presentation/widgets/password_field.dart';
 import 'package:look4me_app/features/auth/presentation/widgets/social_auth_button.dart';
 import 'package:look4me_app/features/navigation/presentation/pages/main_navigation.dart';
-import 'forgot_password_page.dart';
 import 'signup_page.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
