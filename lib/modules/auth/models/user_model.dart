@@ -9,10 +9,15 @@ class UserModel extends Equatable {
   final String? photoUrl;
   final String? bio;
   final DateTime createdAt;
+  final bool isEmailVerified;
 
   // Perfil e Privacidade
   final bool isPrivateProfile;
   final List<String> blockedUsers;
+
+  // Sistema de convites
+  final String? invitedBy; // ID do convite usado no cadastro
+  final int availableInvites; // Número de convites disponíveis para enviar
 
   // Estatísticas de Interação
   final int postCount;
@@ -38,6 +43,9 @@ class UserModel extends Equatable {
   final String? location;
   final String? language;
 
+  // Tipo de autenticação
+  final String authProvider; // 'email', 'google', 'apple'
+
   const UserModel({
     required this.id,
     required this.email,
@@ -46,8 +54,11 @@ class UserModel extends Equatable {
     this.photoUrl,
     this.bio,
     required this.createdAt,
+    this.isEmailVerified = false,
     this.isPrivateProfile = false,
     this.blockedUsers = const [],
+    this.invitedBy,
+    this.availableInvites = 0,
     this.postCount = 0,
     this.followersCount = 0,
     this.followingCount = 0,
@@ -62,6 +73,7 @@ class UserModel extends Equatable {
     this.receiveFollowerNotifications = true,
     this.location,
     this.language,
+    this.authProvider = 'email',
   });
 
   factory UserModel.fromFirestore(DocumentSnapshot doc) {
@@ -75,8 +87,11 @@ class UserModel extends Equatable {
       photoUrl: data['photoUrl'],
       bio: data['bio'],
       createdAt: (data['createdAt'] as Timestamp?)?.toDate() ?? DateTime.now(),
+      isEmailVerified: data['isEmailVerified'] ?? false,
       isPrivateProfile: data['isPrivateProfile'] ?? false,
       blockedUsers: List<String>.from(data['blockedUsers'] ?? []),
+      invitedBy: data['invitedBy'],
+      availableInvites: data['availableInvites'] ?? 0,
       postCount: data['postCount'] ?? 0,
       followersCount: data['followersCount'] ?? 0,
       followingCount: data['followingCount'] ?? 0,
@@ -91,6 +106,7 @@ class UserModel extends Equatable {
       receiveFollowerNotifications: data['receiveFollowerNotifications'] ?? true,
       location: data['location'],
       language: data['language'],
+      authProvider: data['authProvider'] ?? 'email',
     );
   }
 
@@ -102,8 +118,11 @@ class UserModel extends Equatable {
       'photoUrl': photoUrl,
       'bio': bio,
       'createdAt': createdAt,
+      'isEmailVerified': isEmailVerified,
       'isPrivateProfile': isPrivateProfile,
       'blockedUsers': blockedUsers,
+      'invitedBy': invitedBy,
+      'availableInvites': availableInvites,
       'postCount': postCount,
       'followersCount': followersCount,
       'followingCount': followingCount,
@@ -118,6 +137,7 @@ class UserModel extends Equatable {
       'receiveFollowerNotifications': receiveFollowerNotifications,
       'location': location,
       'language': language,
+      'authProvider': authProvider,
     };
   }
 
@@ -127,8 +147,11 @@ class UserModel extends Equatable {
     String? fullName,
     String? photoUrl,
     String? bio,
+    bool? isEmailVerified,
     bool? isPrivateProfile,
     List<String>? blockedUsers,
+    String? invitedBy,
+    int? availableInvites,
     int? postCount,
     int? followersCount,
     int? followingCount,
@@ -143,6 +166,7 @@ class UserModel extends Equatable {
     bool? receiveFollowerNotifications,
     String? location,
     String? language,
+    String? authProvider,
   }) {
     return UserModel(
       id: id,
@@ -152,8 +176,11 @@ class UserModel extends Equatable {
       photoUrl: photoUrl ?? this.photoUrl,
       bio: bio ?? this.bio,
       createdAt: createdAt,
+      isEmailVerified: isEmailVerified ?? this.isEmailVerified,
       isPrivateProfile: isPrivateProfile ?? this.isPrivateProfile,
       blockedUsers: blockedUsers ?? this.blockedUsers,
+      invitedBy: invitedBy ?? this.invitedBy,
+      availableInvites: availableInvites ?? this.availableInvites,
       postCount: postCount ?? this.postCount,
       followersCount: followersCount ?? this.followersCount,
       followingCount: followingCount ?? this.followingCount,
@@ -168,17 +195,19 @@ class UserModel extends Equatable {
       receiveFollowerNotifications: receiveFollowerNotifications ?? this.receiveFollowerNotifications,
       location: location ?? this.location,
       language: language ?? this.language,
+      authProvider: authProvider ?? this.authProvider,
     );
   }
 
   @override
   List<Object?> get props => [
     id, email, username, fullName, photoUrl, bio,
-    createdAt, isPrivateProfile, blockedUsers,
+    createdAt, isEmailVerified, isPrivateProfile, blockedUsers,
+    invitedBy, availableInvites,
     postCount, followersCount, followingCount, likesReceived,
     interests, categories, fashionStyle,
     badges, reputationPoints, currentBadge,
     receiveVoteNotifications, receiveFollowerNotifications,
-    location, language
+    location, language, authProvider
   ];
 }

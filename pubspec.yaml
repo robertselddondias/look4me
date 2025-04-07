@@ -43,14 +43,19 @@ dependencies:
   intl: ^0.19.0
   uuid: ^4.5.1
 
+  # Autenticação social
+  google_sign_in: ^6.3.0
+  sign_in_with_apple: ^7.0.1
+
   # Validators
   email_validator: ^3.0.0
 
   # Performance & UI
-  flutter_native_splash: ^2.4.5
+  flutter_native_splash: ^2.4.6
   flutter_animate: ^4.5.2
   shimmer: ^3.0.0
   lottie: ^3.3.1
+  share_plus: ^10.1.4
 
   # Error Tracking
   sentry_flutter: ^8.14.1

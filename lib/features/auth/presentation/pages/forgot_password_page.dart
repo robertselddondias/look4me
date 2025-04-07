@@ -1,51 +1,79 @@
-// lib/features/auth/presentation/pages/reset_password_page.dart
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../../../../core/theme/app_colors.dart';
-import '../../../../core/theme/text_styles.dart';
-import '../../../../core/widgets/app_button.dart';
-import '../widgets/auth_header.dart';
-import '../widgets/password_field.dart';
-import 'login_page.dart';
+import 'package:look4me/core/theme/app_colors.dart';
+import 'package:look4me/core/theme/text_styles.dart';
+import 'package:look4me/core/widgets/app_button.dart';
+import 'package:look4me/features/auth/presentation/widgets/auth_header.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
-  final String token;
-
-  const ForgotPasswordPage({
-    super.key,
-    required this.token,
-  });
+  const ForgotPasswordPage({super.key});
 
   @override
-  State<ForgotPasswordPage> createState() => _ResetPasswordPageState();
+  State<ForgotPasswordPage> createState() => _ForgotPasswordPageState();
 }
 
-class _ResetPasswordPageState extends State<ForgotPasswordPage> {
+class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   final _formKey = GlobalKey<FormState>();
-  final _passwordController = TextEditingController();
-  final _confirmPasswordController = TextEditingController();
+  final _emailController = TextEditingController();
   bool _isLoading = false;
-  bool _isComplete = false;
+  bool _emailSent = false;
 
   @override
   void dispose() {
-    _passwordController.dispose();
-    _confirmPasswordController.dispose();
+    _emailController.dispose();
     super.dispose();
   }
 
-  void _handleReset() {
+  Future<void> _handleResetPassword() async {
     if (_formKey.currentState!.validate()) {
       setState(() {
         _isLoading = true;
       });
 
-      // Simulando requisição de redefinição de senha
-      Future.delayed(const Duration(seconds: 2), () {
+      try {
+        await FirebaseAuth.instance.sendPasswordResetEmail(
+          email: _emailController.text,
+        );
+
         setState(() {
           _isLoading = false;
-          _isComplete = true;
+          _emailSent = true;
         });
-      });
+      } on FirebaseAuthException catch (e) {
+        setState(() {
+          _isLoading = false;
+        });
+
+        String message;
+        switch (e.code) {
+          case 'user-not-found':
+            message = 'Nenhuma conta encontrada com este e-mail.';
+            break;
+          case 'invalid-email':
+            message = 'E-mail inválido.';
+            break;
+          default:
+            message = 'Erro ao enviar e-mail de recuperação: ${e.message}';
+        }
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(message),
+            backgroundColor: AppColors.error,
+          ),
+        );
+      } catch (e) {
+        setState(() {
+          _isLoading = false;
+        });
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Erro ao enviar e-mail de recuperação: $e'),
+            backgroundColor: AppColors.error,
+          ),
+        );
+      }
     }
   }
 
@@ -53,12 +81,12 @@ class _ResetPasswordPageState extends State<ForgotPasswordPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Redefinir senha'),
+        title: const Text('Recuperar senha'),
       ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
-          child: _isComplete ? _buildSuccessUI() : _buildFormUI(),
+          child: _emailSent ? _buildSuccessUI() : _buildFormUI(),
         ),
       ),
     );
@@ -70,8 +98,8 @@ class _ResetPasswordPageState extends State<ForgotPasswordPage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const AuthHeader(
-            title: 'Crie uma nova senha',
-            subtitle: 'Sua nova senha deve ser diferente das senhas usadas anteriormente.',
+            title: 'Esqueceu sua senha?',
+            subtitle: 'Enviaremos um link para redefinir sua senha',
             showLogo: false,
           ),
           const SizedBox(height: 40),
@@ -80,85 +108,31 @@ class _ResetPasswordPageState extends State<ForgotPasswordPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                PasswordField(
-                  controller: _passwordController,
-                  hintText: 'Nova senha',
+                TextFormField(
+                  controller: _emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: const InputDecoration(
+                    hintText: 'E-mail',
+                    prefixIcon: Icon(Icons.email_outlined),
+                  ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Por favor, insira uma nova senha';
+                      return 'Por favor, insira seu e-mail';
                     }
-                    if (value.length < 8) {
-                      return 'A senha deve ter pelo menos 8 caracteres';
+                    if (!value.contains('@')) {
+                      return 'Por favor, insira um e-mail válido';
                     }
                     return null;
                   },
                 ),
-                const SizedBox(height: 20),
-                PasswordField(
-                  controller: _confirmPasswordController,
-                  hintText: 'Confirmar nova senha',
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Por favor, confirme sua senha';
-                    }
-                    if (value != _passwordController.text) {
-                      return 'As senhas não coincidem';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 16),
-                _buildPasswordRequirements(),
                 const SizedBox(height: 32),
                 AppButton(
-                  text: 'Redefinir senha',
+                  text: 'Enviar link de recuperação',
                   isGradient: true,
                   isLoading: _isLoading,
-                  onPressed: _handleReset,
+                  onPressed: _isLoading ? null : _handleResetPassword,
                 ),
               ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildPasswordRequirements() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Sua senha deve incluir:',
-          style: TextStyles.bodySmall.copyWith(
-            color: AppColors.textSecondary,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        const SizedBox(height: 8),
-        _buildRequirementItem('Pelo menos 8 caracteres'),
-        _buildRequirementItem('Pelo menos um número'),
-        _buildRequirementItem('Pelo menos uma letra maiúscula'),
-        _buildRequirementItem('Pelo menos um caractere especial'),
-      ],
-    );
-  }
-
-  Widget _buildRequirementItem(String text) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 6),
-      child: Row(
-        children: [
-          Icon(
-            Icons.check_circle,
-            color: AppColors.primary.withOpacity(0.7),
-            size: 16,
-          ),
-          const SizedBox(width: 8),
-          Text(
-            text,
-            style: TextStyles.bodySmall.copyWith(
-              color: AppColors.textSecondary,
             ),
           ),
         ],
@@ -169,34 +143,36 @@ class _ResetPasswordPageState extends State<ForgotPasswordPage> {
   Widget _buildSuccessUI() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         const Icon(
-          Icons.check_circle_outline,
+          Icons.mark_email_read,
           size: 80,
           color: AppColors.primary,
         ),
         const SizedBox(height: 32),
         Text(
-          'Senha redefinida com sucesso!',
+          'E-mail enviado!',
           style: TextStyles.heading2,
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 16),
         Text(
-          'Sua senha foi alterada com sucesso. Agora você pode entrar na sua conta com a nova senha.',
+          'Enviamos um link de recuperação para:\n${_emailController.text}',
+          style: TextStyles.bodyMedium,
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 24),
+        Text(
+          'Verifique sua caixa de entrada e siga as instruções no e-mail para redefinir sua senha.',
           style: TextStyles.bodyMedium.copyWith(color: AppColors.textSecondary),
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 40),
         AppButton(
-          text: 'Entrar na minha conta',
+          text: 'Voltar para o login',
           isGradient: true,
           onPressed: () {
-            Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (_) => const LoginPage()),
-                  (route) => false,
-            );
+            Navigator.pop(context);
           },
         ),
       ],
