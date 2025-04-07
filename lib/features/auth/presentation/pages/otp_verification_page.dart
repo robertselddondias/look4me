@@ -1,10 +1,10 @@
 // lib/features/auth/presentation/pages/otp_verification_page.dart
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:look4me_app/core/theme/app_colors.dart';
-import 'package:look4me_app/core/theme/text_styles.dart';
-import 'package:look4me_app/core/widgets/app_button.dart';
-import 'package:look4me_app/features/navigation/presentation/pages/main_navigation.dart';
+import 'package:look4me/core/theme/app_colors.dart';
+import 'package:look4me/core/theme/text_styles.dart';
+import 'package:look4me/core/widgets/app_button.dart';
+import 'package:look4me/features/navigation/presentation/pages/main_navigation.dart';
 import 'dart:async';
 
 class OtpVerificationPage extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:look4me_app/core/theme/app_colors.dart';
-import 'package:look4me_app/core/theme/text_styles.dart';
+import 'package:look4me/core/theme/app_colors.dart';
+import 'package:look4me/core/theme/text_styles.dart';
 
 class AboutAppPage extends StatelessWidget {
   const AboutAppPage({super.key});

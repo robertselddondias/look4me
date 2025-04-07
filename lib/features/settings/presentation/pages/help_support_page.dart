@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:look4me_app/core/theme/app_colors.dart';
-import 'package:look4me_app/core/theme/text_styles.dart';
+import 'package:look4me/core/theme/app_colors.dart';
+import 'package:look4me/core/theme/text_styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HelpSupportPage extends StatefulWidget {
@@ -359,7 +359,7 @@ class _HelpSupportPageState extends State<HelpSupportPage> {
                     icon: Icons.alternate_email,
                     label: 'Instagram',
                     onTap: () {
-                      _launchURL('https://instagram.com/look4me_app');
+                      _launchURL('https://instagram.com/look4me');
                     },
                   ),
                   _buildContactButton(

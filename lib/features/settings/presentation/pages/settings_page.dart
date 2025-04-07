@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:look4me_app/core/theme/app_colors.dart';
-import 'package:look4me_app/core/theme/text_styles.dart';
-import 'package:look4me_app/features/profile/presentation/pages/edit_profile_page.dart';
-import 'package:look4me_app/features/settings/presentation/pages/about_app_page.dart';
-import 'package:look4me_app/features/settings/presentation/pages/appearance_settings_page.dart';
-import 'package:look4me_app/features/settings/presentation/pages/help_support_page.dart';
-import 'package:look4me_app/features/settings/presentation/pages/notification_settings_page.dart';
-import 'package:look4me_app/features/settings/presentation/pages/privacy_settings_page.dart';
+import 'package:look4me/core/theme/app_colors.dart';
+import 'package:look4me/core/theme/text_styles.dart';
+import 'package:look4me/features/profile/presentation/pages/edit_profile_page.dart';
+import 'package:look4me/features/settings/presentation/pages/about_app_page.dart';
+import 'package:look4me/features/settings/presentation/pages/appearance_settings_page.dart';
+import 'package:look4me/features/settings/presentation/pages/help_support_page.dart';
+import 'package:look4me/features/settings/presentation/pages/notification_settings_page.dart';
+import 'package:look4me/features/settings/presentation/pages/privacy_settings_page.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});

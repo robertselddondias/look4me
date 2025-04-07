@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:look4me_app/core/theme/app_colors.dart';
-import 'package:look4me_app/core/theme/text_styles.dart';
-import 'package:look4me_app/core/widgets/look_card.dart';
-import 'package:look4me_app/core/widgets/story_bubble.dart';
-import 'package:look4me_app/features/feed/presentation/widgets/category_chip.dart';
+import 'package:look4me/core/theme/app_colors.dart';
+import 'package:look4me/core/theme/text_styles.dart';
+import 'package:look4me/core/widgets/look_card.dart';
+import 'package:look4me/core/widgets/story_bubble.dart';
+import 'package:look4me/features/feed/presentation/widgets/category_chip.dart';
 
 class FeedPage extends StatefulWidget {
   const FeedPage({super.key});

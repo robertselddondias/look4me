@@ -1,0 +1,147 @@
+{
+  "app": {
+    "name": "Look4Me",
+    "slogan": "Find your perfect look",
+    "version": "1.0.0"
+  },
+  "onboarding": {
+    "slide1": {
+      "title": "Choose the Best Look",
+      "description": "Post two outfit options and get help from the community to decide which is the best choice."
+    },
+    "slide2": {
+      "title": "Emergency Stories",
+      "description": "Need quick help deciding on a purchase? Post a temporary story and get real-time feedback."
+    },
+    "slide3": {
+      "title": "Gain Recognition",
+      "description": "Be recognized as a fashion expert by helping other women with their outfit choices."
+    },
+    "next": "Next",
+    "start": "Get Started"
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome Back!",
+      "subtitle": "Sign in to continue",
+      "email": "Email",
+      "password": "Password",
+      "forgotPassword": "Forgot Password?",
+      "loginButton": "Login",
+      "noAccount": "Don't have an account?",
+      "signupNow": "Sign Up"
+    },
+    "signup": {
+      "title": "Create Your Account",
+      "subtitle": "Join the Look4Me community",
+      "fullName": "Full Name",
+      "username": "Username",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "termsAccept": "I accept the Terms of Service and Privacy Policy",
+      "signupButton": "Sign Up",
+      "alreadyAccount": "Already have an account?",
+      "loginNow": "Login"
+    },
+    "otp": {
+      "title": "Verification",
+      "subtitle": "Enter the verification code",
+      "sentTo": "We sent a 6-digit code to",
+      "verify": "Verify",
+      "resendIn": "Resend code in",
+      "resendCode": "Resend code"
+    }
+  },
+  "feed": {
+    "categories": [
+      "For You",
+      "Popular",
+      "Following",
+      "Casual",
+      "Formal",
+      "Party",
+      "Work"
+    ],
+    "newPost": "New Post",
+    "vote": "Vote"
+  },
+  "stories": {
+    "create": {
+      "title": "New Emergency Story",
+      "question": "What is your question?",
+      "duration": "How long will your story be active?",
+      "occasion": "What is the occasion?",
+      "uploadPhotos": "Upload your photos",
+      "optionA": "Option A",
+      "optionB": "Option B",
+      "publish": "Publish Story"
+    },
+    "predefinedTags": [
+      "ShoppingTrip",
+      "FriendsNight",
+      "RomanticDinner",
+      "CasualDay",
+      "Work",
+      "FamilyParty",
+      "Weekend"
+    ],
+    "durations": [10, 20, 30]
+  },
+  "profile": {
+    "edit": {
+      "title": "Edit Profile",
+      "basicInfo": "Basic Information",
+      "contactInfo": "Contact Information",
+      "preferences": "Preferences",
+      "saveChanges": "Save Changes",
+      "cancel": "Cancel"
+    },
+    "stats": {
+      "posts": "Posts",
+      "followers": "Followers",
+      "following": "Following",
+      "likes": "Likes"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "account": "Account",
+    "profile": "Profile",
+    "privacy": "Privacy",
+    "notifications": "Notifications",
+    "appearance": "Appearance",
+    "helpSupport": "Help & Support",
+    "aboutApp": "About Look4Me",
+    "logout": "Logout"
+  },
+  "validation": {
+    "emailRequired": "Please enter your email",
+    "validEmail": "Please enter a valid email",
+    "passwordRequired": "Please enter your password",
+    "passwordLength": "Password must be at least 6 characters",
+    "passwordsMatch": "Passwords do not match",
+    "usernameRequired": "Please enter a username",
+    "usernameNoSpaces": "Username cannot contain spaces"
+  },
+  "errors": {
+    "generic": "Oops! Something went wrong.",
+    "noInternet": "No internet connection.",
+    "uploadFailed": "Upload failed",
+    "tryAgain": "Try again"
+  },
+  "badges": {
+    "fashionExpert": "Fashion Expert",
+    "trendsetter": "Trendsetter",
+    "styleGuru": "Style Guru"
+  },
+  "common": {
+    "yes": "Yes",
+    "no": "No",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "share": "Share"
+  }
+}

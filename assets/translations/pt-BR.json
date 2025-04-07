@@ -1,0 +1,147 @@
+{
+  "app": {
+    "name": "Look4Me",
+    "slogan": "Encontre seu look perfeito",
+    "version": "1.0.0"
+  },
+  "onboarding": {
+    "slide1": {
+      "title": "Escolha o melhor look",
+      "description": "Poste duas opções de looks e receba ajuda da comunidade para decidir qual é a melhor escolha."
+    },
+    "slide2": {
+      "title": "Stories emergenciais",
+      "description": "Precisa de ajuda rápida para decidir uma compra? Poste um story temporário e receba feedback em tempo real."
+    },
+    "slide3": {
+      "title": "Ganhe reconhecimento",
+      "description": "Seja reconhecida como especialista em moda ao ajudar outras mulheres com suas escolhas de looks."
+    },
+    "next": "Próximo",
+    "start": "Começar agora"
+  },
+  "auth": {
+    "login": {
+      "title": "Bem-vinda de volta!",
+      "subtitle": "Entre com sua conta para continuar",
+      "email": "E-mail",
+      "password": "Senha",
+      "forgotPassword": "Esqueceu a senha?",
+      "loginButton": "Entrar",
+      "noAccount": "Não tem uma conta?",
+      "signupNow": "Cadastre-se"
+    },
+    "signup": {
+      "title": "Crie sua conta",
+      "subtitle": "Junte-se à comunidade Look4Me",
+      "fullName": "Nome completo",
+      "username": "Nome de usuário",
+      "email": "E-mail",
+      "password": "Senha",
+      "confirmPassword": "Confirmar senha",
+      "termsAccept": "Eu aceito os Termos de Serviço e Política de Privacidade",
+      "signupButton": "Cadastrar",
+      "alreadyAccount": "Já tem uma conta?",
+      "loginNow": "Entrar"
+    },
+    "otp": {
+      "title": "Verificação",
+      "subtitle": "Digite o código de verificação",
+      "sentTo": "Enviamos um código de 6 dígitos para",
+      "verify": "Verificar",
+      "resendIn": "Reenviar código em",
+      "resendCode": "Reenviar código"
+    }
+  },
+  "feed": {
+    "categories": [
+      "Para você",
+      "Populares",
+      "Seguindo",
+      "Casual",
+      "Formal",
+      "Festa",
+      "Trabalho"
+    ],
+    "newPost": "Novo Post",
+    "vote": "Votar"
+  },
+  "stories": {
+    "create": {
+      "title": "Novo Story Emergencial",
+      "question": "Qual é a sua dúvida?",
+      "duration": "Por quanto tempo seu story ficará ativo?",
+      "occasion": "Qual é a ocasião?",
+      "uploadPhotos": "Faça upload das suas fotos",
+      "optionA": "Opção A",
+      "optionB": "Opção B",
+      "publish": "Publicar Story"
+    },
+    "predefinedTags": [
+      "CompraShopping",
+      "EncontroAmigos",
+      "JantarRomantico",
+      "CasualDoDia",
+      "Trabalho",
+      "FestaDeFamilia",
+      "FimDeSemana"
+    ],
+    "durations": [10, 20, 30]
+  },
+  "profile": {
+    "edit": {
+      "title": "Editar Perfil",
+      "basicInfo": "Informações básicas",
+      "contactInfo": "Informações de contato",
+      "preferences": "Preferências",
+      "saveChanges": "Salvar alterações",
+      "cancel": "Cancelar"
+    },
+    "stats": {
+      "posts": "Posts",
+      "followers": "Seguidores",
+      "following": "Seguindo",
+      "likes": "Likes"
+    }
+  },
+  "settings": {
+    "title": "Configurações",
+    "account": "Conta",
+    "profile": "Perfil",
+    "privacy": "Privacidade",
+    "notifications": "Notificações",
+    "appearance": "Aparência",
+    "helpSupport": "Ajuda e Suporte",
+    "aboutApp": "Sobre o Look4Me",
+    "logout": "Sair da conta"
+  },
+  "validation": {
+    "emailRequired": "Por favor, insira seu e-mail",
+    "validEmail": "Por favor, insira um e-mail válido",
+    "passwordRequired": "Por favor, insira sua senha",
+    "passwordLength": "A senha deve ter pelo menos 6 caracteres",
+    "passwordsMatch": "As senhas não coincidem",
+    "usernameRequired": "Por favor, insira um nome de usuário",
+    "usernameNoSpaces": "O nome de usuário não pode conter espaços"
+  },
+  "errors": {
+    "generic": "Ops! Algo deu errado.",
+    "noInternet": "Sem conexão com a internet.",
+    "uploadFailed": "Falha no upload",
+    "tryAgain": "Tente novamente"
+  },
+  "badges": {
+    "fashionExpert": "Fashion Expert",
+    "trendsetter": "Trendsetter",
+    "styleGuru": "Style Guru"
+  },
+  "common": {
+    "yes": "Sim",
+    "no": "Não",
+    "cancel": "Cancelar",
+    "save": "Salvar",
+    "edit": "Editar",
+    "delete": "Excluir",
+    "share": "Compartilhar"
+  }
+}

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:look4me_app/core/theme/app_colors.dart';
-import 'package:look4me_app/features/feed/presentation/pages/feed_page.dart';
-import 'package:look4me_app/features/feed/presentation/pages/new_post_page.dart';
-import 'package:look4me_app/features/profile/presentation/pages/profile_page.dart';
-import 'package:look4me_app/features/search/presentation/pages/search_page.dart';
-import 'package:look4me_app/features/stories/presentation/pages/stories_page.dart';
+import 'package:look4me/core/theme/app_colors.dart';
+import 'package:look4me/features/feed/presentation/pages/feed_page.dart';
+import 'package:look4me/features/feed/presentation/pages/new_post_page.dart';
+import 'package:look4me/features/profile/presentation/pages/profile_page.dart';
+import 'package:look4me/features/search/presentation/pages/search_page.dart';
+import 'package:look4me/features/stories/presentation/pages/stories_page.dart';
 
 class MainNavigation extends StatefulWidget {
   const MainNavigation({super.key});

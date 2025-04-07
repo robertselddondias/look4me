@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:look4me_app/core/theme/app_colors.dart';
-import 'package:look4me_app/core/theme/text_styles.dart';
-import 'package:look4me_app/core/widgets/app_button.dart';
-import 'package:look4me_app/features/auth/presentation/widgets/auth_header.dart';
-import 'package:look4me_app/features/auth/presentation/widgets/password_field.dart';
-import 'package:look4me_app/features/auth/presentation/widgets/social_auth_button.dart';
-import 'package:look4me_app/features/navigation/presentation/pages/main_navigation.dart';
+import 'package:look4me/core/theme/app_colors.dart';
+import 'package:look4me/core/theme/text_styles.dart';
+import 'package:look4me/core/widgets/app_button.dart';
+import 'package:look4me/features/auth/presentation/widgets/auth_header.dart';
+import 'package:look4me/features/auth/presentation/widgets/password_field.dart';
+import 'package:look4me/features/auth/presentation/widgets/social_auth_button.dart';
+import 'package:look4me/features/navigation/presentation/pages/main_navigation.dart';
 import 'signup_page.dart';
 
 class LoginPage extends StatefulWidget {
