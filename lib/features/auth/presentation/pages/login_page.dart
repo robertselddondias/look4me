@@ -6,6 +6,7 @@ import 'package:look4me/core/widgets/app_button.dart';
 import 'package:look4me/features/auth/presentation/widgets/auth_header.dart';
 import 'package:look4me/features/auth/presentation/widgets/password_field.dart';
 import 'package:look4me/features/auth/presentation/widgets/social_auth_button.dart';
+import 'package:look4me/features/navigation/presentation/pages/main_navigation.dart';
 import 'package:look4me/modules/auth/blocs/auth_bloc.dart';
 import 'package:look4me/modules/auth/blocs/auth_event.dart';
 import 'package:look4me/modules/auth/blocs/auth_state.dart';
@@ -68,8 +69,10 @@ class _LoginPageState extends State<LoginPage> {
               MaterialPageRoute(builder: (_) => EmailVerificationPage(email: state.user.email)),
             );
           } else {
-            // Redirecionar para a tela principal
-            Navigator.of(context).pushReplacementNamed('/home');
+            // Correção: Redirecionar para a tela principal usando MainNavigation
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (_) => const MainNavigation()),
+            );
           }
         } else if (state is AuthNeedsInvite) {
           // Usuário social novo, precisa de usuário, nome e convite

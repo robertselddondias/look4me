@@ -1,16 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:look4me/core/di/app_dependencies.dart';
 import 'package:look4me/core/theme/app_theme.dart';
 import 'package:look4me/features/auth/presentation/pages/splash_page.dart';
+import 'package:look4me/firebase_options.dart';
 import 'package:look4me/modules/auth/blocs/auth_bloc.dart';
 import 'package:look4me/modules/auth/blocs/auth_event.dart';
 import 'package:look4me/modules/auth/repositories/auth_repository.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
+  // Garantir que os widgets estejam inicializados
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
 
+  // Configurar orientação do app
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
+  // Configurar status bar
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark,
+    ),
+  );
+
+  // Inicializar Firebase
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  // Configurar injeção de dependências
+  setupDependencies();
+
+  // Iniciar o app
   runApp(const Look4MeApp());
 }
 
@@ -22,9 +48,7 @@ class Look4MeApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<AuthBloc>(
-          create: (context) => AuthBloc(
-            AuthRepository(),
-          )..add(AppStarted()),
+          create: (context) => locator<AuthBloc>()..add(AppStarted()),
         ),
       ],
       child: MaterialApp(

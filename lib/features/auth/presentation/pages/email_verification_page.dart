@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:look4me/core/theme/app_colors.dart';
 import 'package:look4me/core/theme/text_styles.dart';
+import 'package:look4me/features/navigation/presentation/pages/main_navigation.dart';
 import 'package:look4me/modules/auth/blocs/auth_bloc.dart';
 import 'package:look4me/modules/auth/blocs/auth_event.dart';
 import 'package:look4me/modules/auth/blocs/auth_state.dart';
@@ -118,8 +119,10 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
             ),
           );
         } else if (state is AuthAuthenticated && !state.needsEmailVerification) {
-          // Email verificado, redirecionar para a tela principal
-          Navigator.of(context).pushReplacementNamed('/home');
+          // Correção: Redirecionar para a tela principal usando MainNavigation
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (_) => const MainNavigation()),
+          );
         } else {
           setState(() {
             _isCheckingEmail = false;

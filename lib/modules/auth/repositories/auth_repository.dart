@@ -1,43 +1,37 @@
-import 'package:firebase_auth/firebase_auth.dart';
+// lib/modules/auth/repositories/auth_repository.dart
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:look4me/core/di/app_dependencies.dart';
+import 'package:look4me/core/services/auth_service.dart';
+import 'package:look4me/modules/auth/models/invite_model.dart';
+import 'package:look4me/modules/auth/models/user_model.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
-import '../models/user_model.dart';
-import '../models/invite_model.dart';
 
 class AuthRepository {
   final FirebaseAuth _firebaseAuth;
   final FirebaseFirestore _firestore;
   final GoogleSignIn _googleSignIn;
+  final AuthService _authService;
 
   AuthRepository({
     FirebaseAuth? firebaseAuth,
     FirebaseFirestore? firestore,
     GoogleSignIn? googleSignIn,
+    AuthService? authService,
   }) :
         _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance,
         _firestore = firestore ?? FirebaseFirestore.instance,
-        _googleSignIn = googleSignIn ?? GoogleSignIn();
+        _googleSignIn = googleSignIn ?? GoogleSignIn(),
+        _authService = authService ?? locator<AuthService>();
 
   // Verifica se o usuário está autenticado
   Stream<User?> get authStateChanges => _firebaseAuth.authStateChanges();
 
   // Obtém o usuário atual
   Future<UserModel?> getCurrentUser() async {
-    final user = _firebaseAuth.currentUser;
-    if (user == null) return null;
-
-    try {
-      final userDoc = await _firestore.collection('users').doc(user.uid).get();
-      if (userDoc.exists) {
-        return UserModel.fromFirestore(userDoc);
-      }
-      return null;
-    } catch (e) {
-      print('Erro ao obter usuário: $e');
-      return null;
-    }
+    return await _authService.getCurrentUser();
   }
 
   // Autenticação com email e senha
@@ -45,23 +39,12 @@ class AuthRepository {
     required String email,
     required String password
   }) async {
-    try {
-      final userCredential = await _firebaseAuth.signInWithEmailAndPassword(
-          email: email,
-          password: password
-      );
+    return await _authService.signInWithEmailAndPassword(email, password);
+  }
 
-      if (userCredential.user != null) {
-        final userDoc = await _firestore.collection('users').doc(userCredential.user!.uid).get();
-        if (userDoc.exists) {
-          return UserModel.fromFirestore(userDoc);
-        }
-      }
-      return null;
-    } catch (e) {
-      print('Erro no login: $e');
-      rethrow;
-    }
+  // Logout
+  Future<void> signOut() async {
+    await _authService.signOut();
   }
 
   // Cadastro com email e senha (incluindo validação de convite)
@@ -184,7 +167,6 @@ class AuthRepository {
           return UserModel.fromFirestore(userDoc);
         } else {
           // Usuário novo com Apple - precisa de convite para continuar
-          // O nome pode estar vazio no Apple Sign In, então precisamos solicitar na UI
           String? fullName;
           if (appleCredential.givenName != null && appleCredential.familyName != null) {
             fullName = '${appleCredential.givenName} ${appleCredential.familyName}';
@@ -197,17 +179,6 @@ class AuthRepository {
       return null;
     } catch (e) {
       print('Erro no login com Apple: $e');
-      rethrow;
-    }
-  }
-
-  // Logout
-  Future<void> signOut() async {
-    try {
-      await _googleSignIn.signOut();
-      await _firebaseAuth.signOut();
-    } catch (e) {
-      print('Erro no logout: $e');
       rethrow;
     }
   }
@@ -309,29 +280,9 @@ class AuthRepository {
     }
   }
 
-  // Verificar quantos convites um usuário tem disponível
-  Future<int> getAvailableInvites(String userId) async {
-    try {
-      final userDoc = await _firestore.collection('users').doc(userId).get();
-      if (!userDoc.exists) return 0;
-
-      final user = UserModel.fromFirestore(userDoc);
-      return user.availableInvites;
-    } catch (e) {
-      print('Erro ao obter convites disponíveis: $e');
-      return 0;
-    }
-  }
-
   // Verificar se o email está verificado
   Future<bool> isEmailVerified() async {
-    try {
-      await _firebaseAuth.currentUser?.reload();
-      return _firebaseAuth.currentUser?.emailVerified ?? false;
-    } catch (e) {
-      print('Erro ao verificar email: $e');
-      return false;
-    }
+    return await _authService.isEmailVerified();
   }
 
   // Reenviar email de verificação

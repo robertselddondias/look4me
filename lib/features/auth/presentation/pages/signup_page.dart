@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:look4me/core/theme/app_colors.dart';
 import 'package:look4me/core/theme/text_styles.dart';
 import 'package:look4me/core/widgets/app_button.dart';
+import 'package:look4me/features/navigation/presentation/pages/main_navigation.dart';
 import 'package:look4me/modules/auth/blocs/auth_bloc.dart';
 import 'package:look4me/modules/auth/blocs/auth_event.dart';
 import 'package:look4me/modules/auth/blocs/auth_state.dart';
@@ -95,8 +96,9 @@ class _SignupPageState extends State<SignupPage> {
               MaterialPageRoute(builder: (_) => EmailVerificationPage(email: state.user.email)),
             );
           } else {
-            // Redirecionar para a tela principal
-            Navigator.of(context).pushReplacementNamed('/home');
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (_) => const MainNavigation()),
+            );
           }
         } else if (state is AuthNeedsInvite) {
           // Usuário social novo, precisa de usuário, nome e convite
