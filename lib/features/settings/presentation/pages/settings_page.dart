@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:look4me/core/theme/app_colors.dart';
 import 'package:look4me/core/theme/text_styles.dart';
 import 'package:look4me/features/profile/presentation/pages/edit_profile_page.dart';
+import 'package:look4me/features/profile/profile_module.dart';
 import 'package:look4me/features/settings/presentation/pages/about_app_page.dart';
 import 'package:look4me/features/settings/presentation/pages/appearance_settings_page.dart';
 import 'package:look4me/features/settings/presentation/pages/help_support_page.dart';
@@ -28,7 +29,7 @@ class SettingsPage extends StatelessWidget {
                 icon: Icons.person_outline,
                 title: 'Perfil',
                 subtitle: 'Editar informações pessoais',
-                page: const EditProfilePage(),
+                page: ProfileModule.getEditProfilePage(),
               ),
               _buildSettingsTile(
                 context: context,
