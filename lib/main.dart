@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:look4me/core/di/app_dependencies.dart';
 import 'package:look4me/core/theme/app_theme.dart';
 import 'package:look4me/features/auth/presentation/pages/splash_page.dart';
+import 'package:look4me/features/settings/settings_module.dart' as settings;
 import 'package:look4me/firebase_options.dart';
 import 'package:look4me/modules/auth/blocs/auth_bloc.dart';
 import 'package:look4me/modules/auth/blocs/auth_event.dart';
@@ -34,7 +35,8 @@ void main() async {
   );
 
   // Configurar injeção de dependências
-  setupDependencies();
+  settings.setupDependencies();
+
 
   // Iniciar o app
   runApp(const Look4MeApp());
